@@ -27,9 +27,9 @@ export default function createValues({ getIn }: Structure<any, any>): FormValues
           this.updateComponent(props)
         }
 
-        UNSAFE_componentWillReceiveProps(props) {
+        componentDidUpdate() {
           if (typeof firstArg === 'function') {
-            this.updateComponent(props)
+            this.updateComponent(this.props)
           }
         }
 

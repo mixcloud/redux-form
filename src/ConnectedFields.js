@@ -46,14 +46,14 @@ export default function createConnectedFields(structure: Structure<any, any>) {
         this.onBlurFns[name] = event => this.handleBlur(name, event)
       })
 
-    UNSAFE_componentWillReceiveProps(nextProps: Props) {
+    componentDidUpdate(prevProps: Props) {
       if (
-        this.props.names !== nextProps.names &&
-        (size(this.props.names) !== size(nextProps.names) ||
-          nextProps.names.some(nextName => !this.props._fields[nextName]))
+        this.props.names !== prevProps.names &&
+        (size(this.props.names) !== size(prevProps.names) ||
+          this.props.names.some(nextName => !this.props._fields[nextName]))
       ) {
         // names has changed. The cached event handlers need to be updated
-        this.prepareEventHandlers(nextProps)
+        this.prepareEventHandlers(this.props)
       }
     }
 
