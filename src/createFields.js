@@ -68,8 +68,8 @@ export default function createFields(structure: Structure<any, any>) {
       this.registerFields(this.props.names)
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps: Props) {
-      if (!plain.deepEqual(this.props.names, nextProps.names)) {
+    componentDidUpdate(prevProps: Props) {
+      if (!plain.deepEqual(this.props.names, prevProps.names)) {
         const { props } = this
         const { unregister } = props._reduxForm
         // unregister old name
